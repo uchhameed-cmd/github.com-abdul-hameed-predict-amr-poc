@@ -1,0 +1,90 @@
+{
+  "dataset": "CDC NHANES public-use XPT, nonoverlapping 2015-16 and 2017-Mar2020",
+  "endpoint": "single HbA1c>=6.5%, among self-reported non-diabetic adults; not confirmed diabetes",
+  "population": "age>=20, DIQ010=2, HbA1c observed, BMI and waist observed",
+  "development_cohort": {
+    "all_interviewed": 9971,
+    "eligible_hba1c": 4292,
+    "complete_body_measures": 4076,
+    "positive": 118,
+    "positive_fraction": 0.028949950932286556
+  },
+  "temporal_test_cohort": {
+    "all_interviewed": 15560,
+    "eligible_hba1c": 6577,
+    "complete_body_measures": 6280,
+    "positive": 214,
+    "positive_fraction": 0.03407643312101911
+  },
+  "selection_development_only": {
+    "BMXBMI": {
+      "validation_brier": 0.028471209600884274
+    },
+    "BMXWAIST": {
+      "validation_brier": 0.028047031099884382
+    }
+  },
+  "results": {
+    "value_proxy": {
+      "auroc": 0.7024267327312336,
+      "average_precision": 0.07428188486527242,
+      "brier": 0.0323672493504499,
+      "log_loss": 0.14060989219912362,
+      "sensitivity_at_10pct_referral": 0.29439252336448596
+    },
+    "highest_risk": {
+      "auroc": 0.6900261454221631,
+      "average_precision": 0.06891628587932001,
+      "brier": 0.03248798532299322,
+      "log_loss": 0.1418909983261924,
+      "sensitivity_at_10pct_referral": 0.2757009345794392
+    },
+    "highest_uncertainty": {
+      "auroc": 0.6900261454221631,
+      "average_precision": 0.06891628587932001,
+      "brier": 0.03248798532299322,
+      "log_loss": 0.1418909983261924,
+      "sensitivity_at_10pct_referral": 0.2757009345794392
+    },
+    "random_seed_2027": {
+      "auroc": 0.7079963085190629,
+      "average_precision": 0.07111426909515454,
+      "brier": 0.032390199319019354,
+      "log_loss": 0.13990405725571275,
+      "sensitivity_at_10pct_referral": 0.2523364485981308
+    },
+    "no_acquisition": {
+      "auroc": 0.6443702604681834,
+      "average_precision": 0.048814961491314646,
+      "brier": 0.032740653277138744,
+      "log_loss": 0.14506037573832392,
+      "sensitivity_at_10pct_referral": 0.14018691588785046
+    },
+    "universal_acquisition_100pct": {
+      "auroc": 0.7271986343369355,
+      "average_precision": 0.07366685387653636,
+      "brier": 0.032336995742438146,
+      "log_loss": 0.13835975635440292,
+      "sensitivity_at_10pct_referral": 0.2897196261682243
+    },
+    "n": 6280,
+    "acquisitions_at_half_budget": 3140,
+    "selected_measurement": "BMXWAIST",
+    "paired_brier_policy_minus_random": {
+      "difference": -2.294996856946415e-05,
+      "bootstrap_95pct_percentile_interval": [
+        -0.0002265136774568592,
+        0.0001668983411681317
+      ]
+    }
+  },
+  "limitations": [
+    "Cross-sectional endpoint; no clinical diagnosis or prospective outcome",
+    "Complete-case analysis may bias results",
+    "No NHANES survey design weights; no population prevalence inference",
+    "Variance-based proxy NOT actual expected Brier gain",
+    "One random-policy draw; uncertainty only assessed for paired Brier difference",
+    "United States survey; no Pakistani external validation",
+    "Not clinically deployable or approved"
+  ]
+}
