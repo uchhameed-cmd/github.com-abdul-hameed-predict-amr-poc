@@ -1,24 +1,36 @@
-name: ASK-T2D NHANES (manual)
+name: ASK-T2D real NHANES pilot
 on:
+  push:
+    paths:
+      - 'ASK-T2D/pilot_v2.py'
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 jobs:
-  pilot:
+  nhanes:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Install
-        run: pip install -r ASK-T2D/requirements.txt
-      - name: Run public NHANES benchmark
-        run: python ASK-T2D/nhanes_pilot.py
-      - name: Upload actual result (if produced)
+      - name: Install scientific dependencies
+        run: pip install pandas numpy scipy scikit-learn requests
+      - name: Run experiment on CDC public XPT files
+        run: python ASK-T2D/pilot_v2.py
+      - name: Commit verifiable JSON results
+        if: success()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ASK-T2D/results/pilot_v2_results.json
+          git commit -m "Add executed NHANES pilot metrics" || true
+          git push
+      - name: Upload results and logs
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: ask-t2d-nhanes-results
-          path: results/nhanes_results.json
+          name: ask-t2d-experiment-artifacts
+          path: ASK-T2D/results/
           if-no-files-found: warn
