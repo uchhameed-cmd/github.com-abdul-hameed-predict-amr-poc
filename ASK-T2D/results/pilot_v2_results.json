@@ -18,7 +18,7 @@
   },
   "selection_development_only": {
     "BMXBMI": {
-      "validation_brier": 0.028471209600884274
+      "validation_brier": 0.02847120960088427
     },
     "BMXWAIST": {
       "validation_brier": 0.028047031099884382
@@ -36,14 +36,14 @@
       "auroc": 0.6900261454221631,
       "average_precision": 0.06891628587932001,
       "brier": 0.03248798532299322,
-      "log_loss": 0.1418909983261924,
+      "log_loss": 0.14189099832619237,
       "sensitivity_at_10pct_referral": 0.2757009345794392
     },
     "highest_uncertainty": {
       "auroc": 0.6900261454221631,
       "average_precision": 0.06891628587932001,
       "brier": 0.03248798532299322,
-      "log_loss": 0.1418909983261924,
+      "log_loss": 0.14189099832619237,
       "sensitivity_at_10pct_referral": 0.2757009345794392
     },
     "random_seed_2027": {
@@ -64,17 +64,17 @@
       "auroc": 0.7271986343369355,
       "average_precision": 0.07366685387653636,
       "brier": 0.032336995742438146,
-      "log_loss": 0.13835975635440292,
+      "log_loss": 0.1383597563544029,
       "sensitivity_at_10pct_referral": 0.2897196261682243
     },
     "n": 6280,
     "acquisitions_at_half_budget": 3140,
     "selected_measurement": "BMXWAIST",
     "paired_brier_policy_minus_random": {
-      "difference": -2.294996856946415e-05,
+      "difference": -2.2949968569464036e-05,
       "bootstrap_95pct_percentile_interval": [
-        -0.0002265136774568592,
-        0.0001668983411681317
+        -0.00022651367745685916,
+        0.00016689834116813198
       ]
     }
   },
