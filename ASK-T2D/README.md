@@ -1,28 +1,37 @@
-# ASK-T2D | Exploratory NHANES Diabetes Screening Benchmark
+# ASK-T2D | Evidence-led AI measurement acquisition for metabolic screening
 
-**Status (24 November 2026):** Public analysis code is hosted here. The actual NHANES experiment has **not** completed, and there are **no verified NHANES accuracy or calibration results** yet. This is research software, not a clinical product.
+**Verified status (24 Nov 2026):** A real CDC NHANES exploratory analysis **has been executed**. The variance-proxy acquisition policy showed no statistically clear Brier improvement over one prespecified matched-count random allocation. **Do not claim clinical validation or proven cost savings.**
 
-## Purpose
-Assess whether adding BMI or waist circumference to a baseline age-and-sex prediction model improves discrimination and calibration for a cross-sectional HbA1c >= 6.5% reference outcome, among NHANES adults aged 20+ reporting no prior diabetes diagnosis (DIQ010 == 2).
+## Read the evidence first
+- [Executed NHANES v2 JSON](results/pilot_v2_results.json)
+- [Method and interpretation](PRELIMINARY_RESULTS.md)
+- [Reproduction script](pilot_v2.py)
+- [Extended 200-random-allocation analysis script](pilot_v3.py) (results not verified as of this update)
+- [Evidence-led grant application draft](BISWAS_APPLICATION.md)
 
-## Design
-- Development: NHANES 2015–2016.
-- Locked temporal evaluation: NHANES 2017–March 2020 pre-pandemic. These periods do not overlap.
-- HbA1c (LBXGH) is only an *outcome reference*, never a model feature; it cannot independently diagnose a patient.
-- Candidate measurements: BMI and waist circumference. Baseline: age, reported sex.
-- A single global extra measurement is selected by validation Brier score, never by temporal test results.
-- Report AUROC, average precision, Brier score, log loss and cohort counts.
-- The model currently does **not** do person-specific acquisition or compare true measurement costs; these are future grant aims.
+## Measured exploratory pilot
+Development: NHANES 2015–2016, 4,076 complete adult records, 118 HbA1c-range positives. Later-period exploratory test: NHANES 2017–March 2020, 6,280 complete adult records, 214 positives. Single HbA1c>=6.5% defines a *laboratory-range outcome*, not confirmed diabetes. The body-measure selection fixed on development data was waist circumference.
+
+| Policy | Body-measure acquisition | Brier loss (lower better) |
+|---|---:|---:|
+| Age/sex only | 0% | 0.03274065 |
+| Random allocation | 50% | 0.03239020 |
+| Variance-proxy ASK-T2D | 50% | 0.03236725 |
+| Universal waist acquisition | 100% | 0.03233700 |
+
+Paired ASK-T2D minus random Brier difference = **-0.00002295**, participant bootstrap 95% CI **[-0.00022651, +0.00016690]**. It crosses zero. This does not demonstrate a meaningful advantage over random allocation.
+
+## Important scientific guardrails
+- The 2017–March 2020 dataset has **already informed hypothesis formation**, so it cannot serve as an untouched confirmatory set for the revised research. The funded study will preregister a distinct historical-cycle holdout (subject to variable harmonization) or describe validation as exploratory if no untouched sample is secured.
+- The current policy ranks conditional **predictive variance**, which is *not* direct expected Brier-risk gain. A direct benefit estimator is proposed, not completed.
+- Complete-case analysis, no survey-weighted inference, no clinical follow-up, no external Pakistan cohort and no validated financial test costs.
+- No clinical claims, human-subject recruitment, or patient-facing decision support.
+- The v3 200-allocation run must not be cited until its data files and result commit are verified.
 
 ## Reproduce
-Install Python 3.11+ and:
 ```bash
-pip install -r ASK-T2D/requirements.txt
-python ASK-T2D/nhanes_pilot.py
+pip install pandas numpy scipy scikit-learn requests
+python ASK-T2D/pilot_v2.py
 ```
-Data is downloaded from public CDC NHANES XPT endpoints into an ignored local data directory. Results are written to results/nhanes_results.json on successful execution.
 
-Alternatively open **Actions > ASK-T2D NHANES (manual) > Run workflow** and download the generated artifact if the run succeeds.
-
-## Integrity, limitations and authorship
-This exploratory benchmark does not use NHANES survey weights for population inference, has not been externally clinically validated, and cannot be used in patient care. Do not present unexecuted analysis as preliminary diagnostic performance. This project is being prepared as open research software supporting the proposed Biswas Family Foundation Fast Grants application. Institutional affiliation and investigator details must be approved by the investigator before they are represented as an institutional endorsement.
+This repository is a public method and transparency artifact supporting an **unsubmitted** proposal to the Biswas Family Foundation, not proof of a funded award.
