@@ -1,8 +1,7 @@
 # Evidence status (24 November 2026)
 
-| Experiment | Status | Evidence |
-|---|---|---|
-| scikit-learn diabetes progression regression demonstration (n=442) | Completed in earlier local pilot | Not a diabetes diagnosis or NHANES experiment |
-| NHANES 2015–2016 development / 2017–March 2020 temporal screening benchmark | **Not executed** | No cohort counts, AUROC, Brier scores or model comparisons verified |
+**Completed:** Real NHANES 2015–2016 development and 2017–March 2020 temporal evaluation on CDC XPT data. Reproducible numerical results: [pilot_v2_results.json](results/pilot_v2_results.json). ASK-T2D's improvement against one equal-budget random selection is too small to distinguish from zero with a paired bootstrap CI.
 
-The data-source code and planned evaluation are publicly available. Research-grade claims require a completed run, provenance checks, robust uncertainty evaluation, clinical input, and a review of all methodological limitations. No clinical benefit or approval has been shown.
+**Pending further verification:** 200-seed randomisation sensitivity study (pilot_v3.py); direct expected Brier gain and clinical utility.
+
+No clinical validation, population-level inference, or patient-level diagnosis has been demonstrated. See [PRELIMINARY_RESULTS.md](PRELIMINARY_RESULTS.md).
