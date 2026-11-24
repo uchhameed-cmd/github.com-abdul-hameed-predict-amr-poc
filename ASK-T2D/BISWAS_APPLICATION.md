@@ -1,64 +1,56 @@
-# Biswas Fast Grants 2026 Cycle 2 — ASK-T2D draft application
+# ASK-T2D — Biswas Fast Grants 2026 Cycle 2
 
-**Draft for investigator and institutional approval, not submitted.** Tier: $25,000; duration: 12 months. Updated 24 November 2026.
+**Competitive draft, not submitted.** Requested $25,000 / 12 months. Updated 24 Nov 2026.
 
 ## Project title
-ASK-T2D: When Is Another Measurement Worth Collecting for Diabetes-Range Screening?
+ASK-T2D: When Does AI-Guided Measurement Add Value in Metabolic Screening?
 
 ## One-sentence summary
-A real NHANES pilot found a tiny, uncertain advantage from AI-selected body measurements. We will test when selective screening helps, fails, or wastes resources.
+A real NHANES pilot found no clear benefit over random test selection. We will identify when AI-guided measurement helps, when it fails, and what it costs.
 
 ## The question / idea
-- Can AI select useful measurements at the same testing budget?
-- Our NHANES pilot found only a tiny advantage over random selection.
-- Does direct expected-loss modelling improve this?
-- When is measuring everyone better?
+- Can AI predict when one added body measurement improves screening reliability?
+- Our 6,280-record NHANES pilot did not beat random selection convincingly.
+- When does targeted collection beat measuring everyone?
 
-## What we'll do
-- Build on our published NHANES pilot.
-- Compare equal-budget random, risk, uncertainty and AI policies.
-- Test direct Brier-gain, missingness and calibration across periods.
-- Publish code, uncertainty intervals and failures.
+## What you'll do
+- Estimate expected Brier-risk reduction using nested development data.
+- Compare random, risk, uncertainty, fixed and universal strategies.
+- Test costs, missing data, calibration and a new locked holdout.
+- Publish failures and code.
 
 ## Why now / why this team
-- Our real NHANES pilot (6,280 test records) exposed an unresolved measurement-choice problem.
-- PI offers open AI research code; clinical/statistical verification is budgeted.
+- Executed NHANES pilot reveals a real null/uncertain result.
+- PI has open AI research software; independent clinical/statistical review is budgeted.
 
 ## Budget
-- Analyst $15k; clinical/statistical review $3k; compute $1k; independent rerun $1.5k; open methods/release $1.5k; university indirect $3k. Total $25k.
+- Research analyst $15k; clinical/statistical review $3k; compute $1k; independent reproduction $1.5k; open release $1.5k; indirect $3k. Total $25k.
 
-## Outputs
-- Open NHANES benchmark, reproducible code and analysis protocol.
-- Published positive, negative and failure results.
+## Public outputs
+- Open, versioned benchmark, code and protocol.
+- A decision map of when targeted measurement helps or fails.
 
-## Brief bio (PI approval pending)
+## Brief bio (PI sign-off required)
 - Dr Abdul Hameed, Professor of Computer Science, UMT, Pakistan.
-- AI research and reproducible model assessment.
+- AI modelling, evaluation and reproducible research.
 - Q-TRUST: public code/results; manuscript under review.
-- ASK-T2D: executed NHANES pilot and public analysis code.
+- ASK-T2D: executed NHANES pilot and public code.
 
-## Real prior-data experiment
-- Development: 4,076 eligible complete records; 118 HbA1c >=6.5%.
-- 2017–Mar2020 test: 6,280 eligible complete records; 214 HbA1c >=6.5%.
-- The development-only rule selected waist circumference.
-- Brier: baseline 0.03274065; random 50% 0.03239020; ASK-T2D 50% 0.03236725; universal 100% 0.03233700.
-- Brier difference ASK-T2D minus one prespecified random allocation -0.00002295; bootstrap 95% CI [-0.00022651, +0.00016690] includes zero.
-- **No statistically clear benefit over random has been demonstrated.** The next study is needed to evaluate direct expected-Brier gain and test when the value of selective measurement disappears.
+## Evidence-backed scientific premise
+An actual NHANES pilot used 4,076 complete development records (2015–2016; 118 HbA1c-range positives) and 6,280 later-period records (2017–Mar 2020; 214 positives). The variance-proxy acquisition policy chose waist circumference for exactly half the later-period cohort. Its Brier loss was 0.032367 vs 0.032390 for **one** matched-count random allocation; bootstrap interval for the difference [-0.00022651, +0.00016690] contains zero. Universal measurement gave 0.032337 with twice the acquisition count. The results do **not** establish advantage over random allocation or patient benefit.
 
-These are retrospective cross-sectional exploratory model results, not clinical validation or diagnosis. The analysis uses complete cases, a single HbA1c threshold, no survey-weighted inference and no external Pakistani cohort.
+The funded research will compare a directly estimated expected reduction in Brier loss with random (>=200 seeds), highest risk, uncertainty, simple fixed policy, and universal acquisition, with cost and prediction accuracy separately reported. Development-only nested cross-fitting will govern policy fitting.
 
-## Primary proposed scientific endpoint
-Temporal-test paired difference in overall Brier loss for a direct expected Brier-risk acquisition policy versus the mean of at least 200 random equal-budget allocations at 50% optional acquisition, with bootstrap and randomisation uncertainty, calibrated models, and locked evaluation procedures. Universal measurement is a higher-cost reference, not an equal-cost comparator.
+**Validation correction:** 2017–March 2020 NHANES has already informed the revised proposal; it is *exploratory* and cannot now be described as an untouched confirmatory set. Any new confirmation must use a previously unused, harmonized cycle (for example 2013–14 if compatible) under a preregistered analysis. Otherwise results remain exploratory.
 
-## Required checks before submitting
-- Confirm UMT's eligibility to receive a charitable gift (foreign equivalency or eligible US 501(c)(3) intermediary).
-- Confirm a named clinical/biostatistical adviser, approved duties and fees.
-- Obtain PI signoff on biography and selected research outputs.
-- Confirm budget/institutional support and all field character limits in Airtable.
-- One-page month-six update and Foundation acknowledgement in resulting publications are required.
+**Critical limitations:** single HbA1c lab-range outcome, not diagnosis; complete cases; no survey-weighted population inference, clinical recruitment, patient-facing product or confirmed cost saving.
 
-## Scientific provenance
-- [Actual NHANES results](results/pilot_v2_results.json)
-- [Pilot source](pilot_v2.py)
-- [Measured findings and interpretation](PRELIMINARY_RESULTS.md)
-- [Foundation application instructions](https://www.biswasfamilyfoundation.org/science/fast-grants)
+## Source and reviewer audit
+- [Real executed NHANES metrics](results/pilot_v2_results.json)
+- [Public pilot interpretation](PRELIMINARY_RESULTS.md)
+- [Reproducible code](pilot_v2.py)
+- [Experimental 200-seed code](pilot_v3.py): **no verified result yet**
+- [Foundation instructions](https://www.biswasfamilyfoundation.org/science/fast-grants)
+
+## Outstanding before submission
+Institutional gift eligibility (foreign-equivalency determination or eligible US charitable intermediary), named clinical/biostatistical reviewer with approval, institutional budget and PI sign-off. The applicant may select *unsure* for gift eligibility where appropriate; it must never be falsely stated as confirmed. If funded, one-page report in month 6 and acknowledgment of the Foundation in research publications are required.
