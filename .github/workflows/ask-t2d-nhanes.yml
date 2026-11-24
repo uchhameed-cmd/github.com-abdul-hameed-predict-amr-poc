@@ -1,0 +1,24 @@
+name: ASK-T2D NHANES (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  pilot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install
+        run: pip install -r ASK-T2D/requirements.txt
+      - name: Run public NHANES benchmark
+        run: python ASK-T2D/nhanes_pilot.py
+      - name: Upload actual result (if produced)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ask-t2d-nhanes-results
+          path: results/nhanes_results.json
+          if-no-files-found: warn
