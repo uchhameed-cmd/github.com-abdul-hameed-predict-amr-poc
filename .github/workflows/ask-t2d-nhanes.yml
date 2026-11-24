@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - 'ASK-T2D/pilot_v2.py'
+      - 'ASK-T2D/pilot_v3.py'
   workflow_dispatch:
 permissions:
   contents: write
@@ -24,7 +25,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add ASK-T2D/results/pilot_v2_results.json
+          git add ASK-T2D/results/
           git commit -m "Add executed NHANES pilot metrics" || true
           git push
       - name: Upload results and logs
