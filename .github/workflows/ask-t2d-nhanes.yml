@@ -19,7 +19,7 @@ jobs:
       - name: Install scientific dependencies
         run: pip install pandas numpy scipy scikit-learn requests
       - name: Run experiment on CDC public XPT files
-        run: python ASK-T2D/pilot_v2.py
+        run: python ASK-T2D/pilot_v3.py
       - name: Commit verifiable JSON results
         if: success()
         run: |
